@@ -1,10 +1,12 @@
 Library
   signature KANREN
+  structure Kanren
 is
   $/basis.cm
   lib/sml-abt/abt.cm
   lib/sml-abt-unify/abt-unify.cm (bind:(anchor:libs value:lib))
   lib/sml-stream/stream.cm
 
-  src/kanren.sig
   src/operator.sml
+  src/kanren.sig
+  src/kanren.sml

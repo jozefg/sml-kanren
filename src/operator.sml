@@ -16,6 +16,6 @@ struct
       | ATOM s => s
 end
 
-structure A = Abt(structure O = Operator
-                  structure V = Variable())
+structure A = Abt(structure Operator = Operator
+                  structure Variable = Variable())
 structure Term = AbtUtil(A)
