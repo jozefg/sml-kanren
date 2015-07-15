@@ -28,7 +28,7 @@ struct
       Stream.return (s2 @ List.map (fn (v, e) => (v, applySol s2 e)) s)
     end handle Unify.Mismatch _ => Stream.empty
 
-  fun conj (p1, p2) s = Stream.>>= (p1 s, p2)
+  fun conj (p1, p2) s = Stream.>>- (p1 s, p2)
 
   fun disconj (p1, p2) s = Stream.merge (p1 s) (p2 s)
 
