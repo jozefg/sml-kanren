@@ -16,6 +16,7 @@ sig
     val conj    : program * program -> program
     val disconj : program * program -> program
     val fresh   : (term -> program) -> program
+    val freshN  : int -> (term list -> program) -> program
 
     type sol = (var * term) list
 

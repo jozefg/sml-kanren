@@ -35,6 +35,8 @@ struct
                                         (Stream.delay (fn () => p2 s))
 
   fun fresh f s = f (`` (Var.new ())) s
+  fun freshN i f s = f (List.tabulate (i, fn _ => `` (Var.new ()))) s
+
 
   fun run p = Stream.toList (p [])
   fun runN i p = Stream.observe i (p [])
