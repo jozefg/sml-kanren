@@ -37,7 +37,18 @@ struct
   fun fresh f s = f (`` (Var.new ())) s
   fun freshN i f s = f (List.tabulate (i, fn _ => `` (Var.new ()))) s
 
-  fun run p = Stream.toList (p [])
-  fun runN i p = Stream.observe i (p [])
-                 handle Stream.Empty => raise Subscript
+  fun run p =
+    let
+      val t = `` (Var.new ())
+    in
+      Stream.toList (Stream.map (fn s => applySol s t) (p t []))
+    end
+
+  fun runN i p =
+    let
+      val t = `` (Var.new ())
+    in
+      Stream.observe i (Stream.map (fn s => applySol s t) (p t []))
+    end
+    handle Stream.Empty => raise Subscript
 end

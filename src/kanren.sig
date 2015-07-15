@@ -18,8 +18,6 @@ sig
     val fresh   : (term -> program) -> program
     val freshN  : int -> (term list -> program) -> program
 
-    type sol = (var * term) list
-
-    val run  : program -> sol list
-    val runN : int -> program -> sol list
+    val run  : (term -> program) -> term list
+    val runN : int -> (term -> program) -> term list
 end

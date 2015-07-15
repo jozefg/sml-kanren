@@ -14,12 +14,12 @@ struct
         zs === pair (x, z) conj
         appendo y ys z)))
 
-  val _::_ = run (appendo (atom "nil") (atom "nil") (atom "nil"))
-  val _::_ = run (fresh (fn x =>
+  val _::_ = run (fn _ => appendo (atom "nil") (atom "nil") (atom "nil"))
+  val _::_ = run (fn x =>
                     appendo (pair (atom "foo", atom "nil"))
                             (pair (atom "bar", atom "nil"))
-                            x))
-  val [] = run (fresh (fn x =>
+                            x)
+  val [] = run (fn x =>
                 fresh (fn y =>
-                  appendo (atom "nil") (atom "nil") (pair (x, y)))))
+                  appendo (atom "nil") (atom "nil") (pair (x, y))))
 end
