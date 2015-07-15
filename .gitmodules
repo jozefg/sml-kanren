@@ -1,0 +1,12 @@
+[submodule "sml-stream"]
+	path = lib/sml-stream
+	url = ssh://git@github.com/jozefg/sml-stream
+[submodule "sml-abt-unify"]
+	path = lib/sml-abt-unify
+	url = ssh://git@github.com/jozefg/sml-abt-unify
+[submodule "sml-abt"]
+	path = lib/sml-abt
+	url = ssh://git@github.com/jonsterling/sml-abt
+[submodule "cmlib"]
+	path = lib/cmlib
+	url = ssh://git@github.com/standardml/cmlib
