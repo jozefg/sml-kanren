@@ -34,12 +34,7 @@ struct
   fun disconj (p1, p2) s = Stream.merge (Stream.delay (fn () => p1 s))
                                         (Stream.delay (fn () => p2 s))
 
-  fun fresh f s =
-    let
-      val t = `` (Var.new ())
-    in
-      f t s
-    end
+  fun fresh f s = f (`` (Var.new ())) s
 
   fun run p = Stream.toList (p [])
   fun runN i p = Stream.observe i (p [])
