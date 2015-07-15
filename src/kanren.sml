@@ -1,4 +1,4 @@
-structure Kanren =
+structure Kanren :> KANREN =
 struct
   structure Unify = AbtUnify(Term)
   open Operator
@@ -34,4 +34,8 @@ struct
     in
       f t s
     end
+
+  fun run p = Stream.toList (p [])
+  fun runN i p = Stream.observe i (p [])
+                 handle Stream.Empty => raise Subscript
 end
