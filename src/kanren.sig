@@ -3,6 +3,9 @@ sig
     type var
     type term
 
+    val varToString : var -> string
+    val toString    : term -> string
+
     val atom : string -> term
     val pair : term * term -> term
     val var  : var -> term
@@ -10,8 +13,8 @@ sig
     type program
 
     val ===     : term * term -> program
-    val conj    : program -> program -> program
-    val disconj : program -> program -> program
+    val conj    : program * program -> program
+    val disconj : program * program -> program
     val fresh   : (term -> program) -> program
 
     type sol = (var * term) list
