@@ -6,8 +6,8 @@ struct
   infix $ \
   infix 8 $$ // \\
 
-  type var = Variable.t
-  val varToString = Variable.toString
+  type var = Var.t
+  val varToString = Var.toString
 
   type term = t
   val toString = toString
@@ -28,13 +28,15 @@ struct
       Stream.return (s2 @ List.map (fn (v, e) => (v, applySol s2 e)) s)
     end handle Unify.Mismatch _ => Stream.empty
 
-  fun conj (p1, p2) s = Stream.>>- (p1 s, p2)
+  fun conj (p1, p2) s = Stream.>>- (Stream.delay (fn () => p1 s),
+                                    fn s => Stream.delay (fn () => p2 s))
 
-  fun disconj (p1, p2) s = Stream.merge (p1 s) (p2 s)
+  fun disconj (p1, p2) s = Stream.merge (Stream.delay (fn () => p1 s))
+                                        (Stream.delay (fn () => p2 s))
 
   fun fresh f s =
     let
-      val t = `` (Variable.named "x")
+      val t = `` (Var.new ())
     in
       f t s
     end
