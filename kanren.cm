@@ -1,6 +1,8 @@
 Library
   signature KANREN
   structure Kanren
+  signature KANREN_PRELUDE
+  functor KanrenPrelude
 is
   $/basis.cm
   lib/sml-abt/abt.cm
@@ -10,3 +12,5 @@ is
   src/operator.sml
   src/kanren.sig
   src/kanren.sml
+  src/prelude.sig
+  src/prelude.fun
